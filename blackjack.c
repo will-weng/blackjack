@@ -11,62 +11,46 @@
     TODO: ask for player names 
  */
 
-
-
 #include <stdlib.h>
 #include <stdio.h>
-#include "header"
-
-
-int main(int argc, char *argv[]) {
-
-    printf("Welcome to Black Jack\n");
-    printf("How many players: \n");
-    int playerNumber;
-    scanf("%d", &playerNumber);
-    Game G = newGame(playerNumber);
-    
-    //change condition from testing
-    while(G->cardCount > 20) {
-        newRound(G->cardCount, G);
-
-        countCard(G);
-    }
-
-    return EXIT_SUCCESS;
-}
-
+#include "blackjack.h"
 
 
 Game newGame(int numOfPlayers) {
 
-    Game newGame = malloc(sizeof(struct _game));
+    Game G = malloc(sizeof(struct _game));
 
-    newGame->deck = newDeck();
+    G->deck = newDeck();
 
-    if (numOfPlayers < 5) {
-        newGame->playerE.active = NOT_ACTIVE;
-        newGame->playerE.hand->head = NULL;
-    }
-    if (numOfPlayers < 4) {
-        newGame->playerD.active = NOT_ACTIVE;
-        newGame->playerD.hand->head = NULL;
-    }
-    if (numOfPlayers < 3) {
-        newGame->playerC.active = NOT_ACTIVE;
-        newGame->playerC.hand->head = NULL;
-    }
-    if (numOfPlayers < 2) {
-        newGame->playerB.active = NOT_ACTIVE;
-        newGame->playerB.hand->head = NULL;
+    for (int i = 0; i < numOfPlayers; i++)
+    {
+        /* code */
     }
 
-    newGame->dealer.hand->head = NULL;
-    newGame->playerA.hand->head = NULL;
+
+    // if (numOfPlayers < 5) {
+    //     newGame->playerE.active = NOT_ACTIVE;
+    //     newGame->playerE.hand->head = NULL;
+    // }
+    // if (numOfPlayers < 4) {
+    //     newGame->playerD.active = NOT_ACTIVE;
+    //     newGame->playerD.hand->head = NULL;
+    // }
+    // if (numOfPlayers < 3) {
+    //     newGame->playerC.active = NOT_ACTIVE;
+    //     newGame->playerC.hand->head = NULL;
+    // }
+    // if (numOfPlayers < 2) {
+    //     newGame->playerB.active = NOT_ACTIVE;
+    //     newGame->playerB.hand->head = NULL;
+    // }
+
+    G->dealer.hand->head = NULL;
+    G->playerA.hand->head = NULL;
     
-    newGame->round = 1;
-    newGame->cardCount = CARDS_IN_A_DECK;
-    return newGame;
+    G->round = 1;
+    G->cardCount = CARDS_IN_A_DECK;
+    return G;
 }
 
 
@@ -192,13 +176,13 @@ char readCard(int number) {
     char card;
     number = number % SUIT;
     if(number > 0 && number < 11) {
-        char = ASCII_ZERO + number;
+        char = '0' + number;
     } else if(number == 11) {
-        char = ASCII_J;
+        char = 'j';
     } else if(number == 12) {
-        char = ASCII_Q;
+        char = 'q';
     } else {
-        char = ASCII_K
+        char = 'k'
     }
     return card;
 }

@@ -6,11 +6,6 @@
 
 #define CARDS_IN_A_DECK 52
 #define SUIT 13
-#define ASCII_ZERO 48
-#define ASCII_J 74
-#define ASCII_Q 81
-#define ASCII_K 75
-
 
 #define BUST 1
 #define NOT_BUST 0
@@ -36,11 +31,7 @@ typedef struct _list {
 typedef struct _game{
     List deck;
     int round;
-    player playerA;
-    player playerB;
-    player playerC;
-    player playerD;
-    player playerE;
+    player [5]
     player dealer;
     int cardCount;
 } Game;
